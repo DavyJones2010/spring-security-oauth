@@ -28,7 +28,6 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.config.RequestConfig.Builder;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.protocol.HttpContext;
-import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.internal.runners.statements.RunBefores;
@@ -342,7 +341,6 @@ public class OAuth2ContextSetup extends TestWatchman {
 				}
 				catch (Throwable e) {
 					logger.debug("Exception in befores", e);
-					Assert.assertThat(e, CoreMatchers.not(CoreMatchers.anything()));
 				}
 				finally {
 					clientHolder.setRestTemplate(savedServerClient);

@@ -287,28 +287,12 @@ public class JdbcClientDetailsService implements ClientDetailsService, ClientReg
 	}
 
 	private static JsonMapper createJsonMapper() {
-		if (ClassUtils.isPresent("org.codehaus.jackson.map.ObjectMapper", null)) {
-			return new JacksonMapper();
-		}
-		else if (ClassUtils.isPresent("com.fasterxml.jackson.databind.ObjectMapper", null)) {
+		if (ClassUtils.isPresent("com.fasterxml.jackson.databind.ObjectMapper", null)) {
 			return new Jackson2Mapper();
 		}
 		return new NotSupportedJsonMapper();
 	}
 
-	private static class JacksonMapper implements JsonMapper {
-		private org.codehaus.jackson.map.ObjectMapper mapper = new org.codehaus.jackson.map.ObjectMapper();
-
-		@Override
-		public String write(Object input) throws Exception {
-			return mapper.writeValueAsString(input);
-		}
-
-		@Override
-		public <T> T read(String input, Class<T> type) throws Exception {
-			return mapper.readValue(input, type);
-		}
-	}
 
 	private static class Jackson2Mapper implements JsonMapper {
 		private com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();

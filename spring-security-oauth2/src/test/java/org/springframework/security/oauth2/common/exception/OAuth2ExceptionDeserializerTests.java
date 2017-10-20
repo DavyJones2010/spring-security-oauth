@@ -14,7 +14,7 @@ package org.springframework.security.oauth2.common.exception;
 
 import static org.junit.Assert.assertEquals;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.security.oauth2.common.exceptions.*;

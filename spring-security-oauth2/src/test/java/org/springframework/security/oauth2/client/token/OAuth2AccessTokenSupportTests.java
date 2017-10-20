@@ -26,7 +26,7 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.util.Arrays;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;

@@ -15,7 +15,7 @@ package org.springframework.security.oauth2.common.util;
 
 import java.util.Map;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @author Dave Syer

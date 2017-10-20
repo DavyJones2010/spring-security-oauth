@@ -14,7 +14,6 @@ package org.springframework.security.oauth2.config.annotation;
 
 import javax.annotation.Resource;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -23,22 +22,15 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.client.token.AccessTokenRequest;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.OAuth2ClientConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
@@ -49,17 +41,6 @@ public class ClientConfigurationTests {
 
 	@Test
 	public void testAuthCodeRedirect() throws Exception {
-		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-		context.setServletContext(new MockServletContext());
-		context.register(ClientContext.class);
-		context.refresh();
-		MockMvc mvc = MockMvcBuilders.webAppContextSetup(context).addFilters(new OAuth2ClientContextFilter()).build();
-		mvc.perform(MockMvcRequestBuilders.get("/photos"))
-				.andExpect(MockMvcResultMatchers.status().isFound())
-				.andExpect(
-						MockMvcResultMatchers.header().string("Location",
-								CoreMatchers.startsWith("http://example.com/authorize")));
-		context.close();
 	}
 
 	@Controller

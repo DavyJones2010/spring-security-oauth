@@ -12,8 +12,6 @@
  */
 package org.springframework.security.oauth2.config.annotation;
 
-import static org.hamcrest.CoreMatchers.containsString;
-
 import java.util.Collections;
 
 import javax.servlet.Filter;
@@ -64,6 +62,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import static org.junit.matchers.JUnitMatchers.containsString;
 
 /**
  * @author Dave Syer
